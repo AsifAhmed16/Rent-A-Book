@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Rent A Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<header id="header" class="page-topbar">
+    <div class="navbar-fixed">
+        <nav class="navbar-color">
+            <div class="nav-wrapper">
+                <div class="form-group col-sm-4">
+                    <br>
+                    {% if user.is_authenticated %}
+                    <a href="/logout">Logout</a> &emsp;
+                    {% else %}
+                    <a href="/login">Login</a> &emsp;
+                    {% endif %}
+
+                    {% if user.is_admin %}
+                    <a href="/manage_rent">Manage Rent</a> &emsp;
+                    <a href="/manage_books">Manage Books</a> &emsp;
+                    <a href="/manage_penalty">Manage Penalty</a> &emsp;
+                    {% else %}
+                    <a href="/rent_history">Rent History</a> &emsp;
+                    {% endif %}
+                    <a href="/">Home</a> &emsp;
+                    <br>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<body>
+
+<div class="container">
+    <h2>Book Details</h2>
+
+    <div>
+        <h3>Book Name : {{ item.book_name }}</h3>
+        <h3>Author Name : {{ item.author_name }}</h3>
+        <h3>Category : {{ item.category }}</h3>
+        <br>
+        <br>
+        <a href="{% url 'management:rent_book' item.id %}"
+           class="btn-floating waves-effect waves-light deep-orange">Rent the book</a>
+    </div>
+</div>
+
+</body>
+</html>
+

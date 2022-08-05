@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Rent A Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<header id="header" class="page-topbar">
+    <div class="navbar-fixed">
+        <nav class="navbar-color">
+            <div class="nav-wrapper">
+                <div class="form-group col-sm-4">
+                    <br>
+                    {% if user.is_authenticated %}
+                    <a href="/logout">Logout</a> &emsp;
+                    {% else %}
+                    <a href="/login">Login</a> &emsp;
+                    {% endif %}
+                    <a href="/rent_list">Rent History</a>
+                    <br>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <br>
+    <br>
+
+    <h2>Welcome to Rent A Book</h2>
+    <br>
+    <br>
+    <div>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.level_tag == 'success' %}
+        <p style="background-color:powderblue;">{{ message.message }}</p>
+        {% endif %}
+        {% endfor %}
+        <br>
+        <br>
+        {% endif %}
+    </div>
+    <br>
+    <h2>Book List</h2>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Category</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for each in all_books %}
+        <tr class="info">
+            <td>{{ each.book_name }}</td>
+            <td>{{ each.author_name }}</td>
+            <td>{{ each.category }}</td>
+            <td>
+                <a href="{% url 'management:book_details' each.id %}"
+                   class="btn-floating waves-effect waves-light deep-orange">Check Details</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            Copyright © 2022. </a> All rights reserved.
+            <span class="right"> Developed by <a class="grey-text text-lighten-4"
+                                                 href="https://github.com/AsifAhmed16">Asif Ahmed</a></span>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

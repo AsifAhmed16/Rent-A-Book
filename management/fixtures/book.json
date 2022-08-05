@@ -1,0 +1,29 @@
+[
+  {
+    "model": "management.book",
+    "pk": 1,
+    "fields": {
+      "book_name": "Kafka on the shore",
+      "author_name": "Haruki Murakami",
+      "category": "Drama"
+    }
+  },
+  {
+    "model": "management.book",
+    "pk": 2,
+    "fields": {
+      "book_name": "Norwegian wood",
+      "author_name": "Haruki Murakami",
+      "category": "Romance"
+    }
+  },
+  {
+    "model": "management.book",
+    "pk": 3,
+    "fields": {
+      "book_name": "Hamlet",
+      "author_name": "William Shakespeare",
+      "category": "Tragedy"
+    }
+  }
+]
